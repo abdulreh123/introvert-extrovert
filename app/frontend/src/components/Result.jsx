@@ -10,8 +10,8 @@ padding-top: 2rem;`
 
 const Result = (props) => {
     const [answer, setAnswer] = useState({})
-    const getAnswer = () => {
-        axios.get(`http://localhost:8000/user/answers/${props.name}`,)
+    const getAnswer = (name) => {
+        axios.get(`http://localhost:8000/user/answers/${name}`,)
             .then(api => {
                 setAnswer(api.data)
             })
@@ -20,8 +20,8 @@ const Result = (props) => {
             })
     }
     useEffect(() => {
-        getAnswer()
-    }, [])
+        getAnswer(props.name)
+    }, [props.name])
     return (
         <ResultContainer>
             <h1 style={{color:'white'}}>{answer.type}</h1>
